@@ -11,11 +11,11 @@ const Fib = () => {
   const fetchValues = useCallback(async () => {
     const values = await axios.get('/api/values/current')
     setValues(values.data)
-  })
+  }, [])
   const fetchIndexes = useCallback(async () => {
     const seenIndexes = await axios.get('/api/values/all')
     setSeenIndexes(seenIndexes.data)
-  })
+  }, [])
 
   const handleSubmit = useCallback(async (evt) => {
     evt.preventDefault()
@@ -28,7 +28,7 @@ const Fib = () => {
   useEffect(() => {
     fetchValues()
     fetchIndexes()
-  })
+  }, [fetchValues, fetchIndexes])
 
 
   return <div>
